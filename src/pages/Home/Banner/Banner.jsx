@@ -2,8 +2,6 @@ import banner1 from "../../../assets/images/banner/university1.jpg";
 import banner2 from "../../../assets/images/banner/banner2.jpg";
 import banner3 from "../../../assets/images/banner/banner3.jpg";
 import banner4 from "../../../assets/images/banner/banner4.jpg";
-// import Swiper from 'swiper';
-// import Swiper styles
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

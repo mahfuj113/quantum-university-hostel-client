@@ -1,6 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { MdNotificationsNone } from "react-icons/md";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navLinks = (
     <>
       <li>
@@ -36,27 +46,26 @@ const Navbar = () => {
               : "text-lg font-medium disabled"
           }
         >
-          Upcoming Meals
+          Upcoming Meals<MdNotificationsNone></MdNotificationsNone>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to={"/about"}
-          className={({ isActive }) =>
-            isActive
-              ? "bg-red-400 hover:bg-red-400"
-              : "text-lg font-medium disabled"
-          }
-        >
-          Join US
-        </NavLink>
-      </li>
+      {!user && (
+        <li>
+          <NavLink
+            to={"/about"}
+            className={({ isActive }) =>
+              isActive
+                ? "bg-red-400 hover:bg-red-400"
+                : "text-lg font-medium disabled"
+            }
+          >
+            Join US
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
-  const logOut = () => {
-    console.log("object");
-  };
   return (
     <div className="navbar fixed z-10 bg-opacity-80 top-0 bg-base-100">
       <div className="navbar-start">
@@ -84,7 +93,6 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        {/* <a className="btn btn-ghost normal-case text-xl">Quantum Nova University</a> */}
         <p className="font-medium bg-gradient-to-r bg-clip-text text-transparent from-[#004EA2] via-[#7CEA03] to-yellow-500  w-full text-xl">
           Quantum University Hostel
         </p>
@@ -97,7 +105,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-left">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                {/* <img src={user.photoURL} alt={user.displayName} /> */}
+                <img src={user.photoURL} alt={user.displayName} />
               </div>
             </label>
             <ul
@@ -119,7 +127,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/login">
-            <button onClick={handleSignOut} className="btn btn-sm btn-ghost">
+            <button onClick={handleLogOut} className="btn btn-sm btn-ghost">
               Login
             </button>
           </Link>
