@@ -116,7 +116,19 @@ const Navbar = () => {
                 <p className="text-lg">{user.displayName}</p>
               </li>
               <li>
-                <button className="btn btn-sm btn-ghost">Dashboard</button>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-red-400 hover:bg-red-400"
+                        : "text-lg font-medium disabled"
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+                {/* <button className="btn btn-sm btn-ghost">Dashboard</button> */}
               </li>
               <li>
                 <button className="btn btn-sm btn-ghost" onClick={logOut}>
