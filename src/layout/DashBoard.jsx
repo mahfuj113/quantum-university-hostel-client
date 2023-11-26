@@ -26,22 +26,22 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/addItems"}>
+                <NavLink to={"/dashboard/manageUsers"}>
                   <FaUtensils></FaUtensils>Manage Users
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/manageItems"}>
+                <NavLink to={"/dashboard/addItems"}>
                   <FaList></FaList>Add meal
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/review"}>
+                <NavLink to={"/dashboard/allMeals"}>
                   <FaBook></FaBook> All meals
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/users"}>
+                <NavLink to={"/dashboard/allReviews"}>
                   <FaUsers></FaUsers> All reviews
                 </NavLink>
               </li>
