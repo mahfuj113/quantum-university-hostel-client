@@ -33,7 +33,7 @@ const MealDetails = () => {
   } = meal;
   return (
     <div>
-      <h1 className="text-center text-3xl font-bold">Meal Details</h1>
+      <h1 className="text-center text-3xl font-bold mt-20">Meal Details</h1>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           {/* <div className="text-center lg:text-left"> */}

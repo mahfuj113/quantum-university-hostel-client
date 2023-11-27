@@ -18,8 +18,8 @@ const Navbar = () => {
           to={"/"}
           className={({ isActive }) =>
             isActive
-              ? " underline decoration-4 underline-offset-8 text-[#7CEA03] text-lg font-medium decoration-[#7CEA03] hover:text-[#7CEA03] hover:bg-inherit"
-              : "disabled"
+              ? "underline decoration-4 underline-offset-8 text-[#7CEA03] text-lg font-medium decoration-[#7CEA03] hover:text-[#7CEA03] hover:bg-inherit"
+              : "text-lg font-medium disabled"
           }
         >
           Home
@@ -27,7 +27,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={"/about"}
+          to="/meals"
           className={({ isActive }) =>
             isActive
               ? " underline decoration-4 underline-offset-8 text-[#7CEA03] text-lg font-medium decoration-[#7CEA03]"
@@ -39,7 +39,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={"/blogs"}
+          to={"/upcomingMeals"}
           className={({ isActive }) =>
             isActive
               ? " underline decoration-4 underline-offset-8 text-[#4BBA86] text-lg font-medium decoration-[#7CEA03]"

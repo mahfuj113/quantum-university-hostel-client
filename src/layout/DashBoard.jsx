@@ -10,10 +10,13 @@ import {
   FaUtensils,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+// import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
-  //   const [isAdmin] = useAdmin();
+  ///TODO:  get isAdmin value from the database
+  // const [isAdmin] = useAdmin();
   const isAdmin = true;
+
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-orange-400">
@@ -21,7 +24,7 @@ const DashBoard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to={"/dashboard/adminHome"}>
+                <NavLink to={"/dashboard/adminProfile"}>
                   <FaHome></FaHome> Admin Profile
                 </NavLink>
               </li>
@@ -46,12 +49,12 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/users"}>
+                <NavLink to={"/dashboard/serveMeals"}>
                   <FaUsers></FaUsers> Serve meals
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/users"}>
+                <NavLink to={"/dashboard/upcomingMeals"}>
                   <FaUsers></FaUsers> Upcoming meals
                 </NavLink>
               </li>
