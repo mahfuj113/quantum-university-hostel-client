@@ -15,7 +15,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const DashBoard = () => {
   ///TODO:  get isAdmin value from the database
   // const [isAdmin] = useAdmin();
-  const isAdmin = true;
+  const isAdmin = false;
 
   return (
     <div className="flex">
@@ -62,30 +62,25 @@ const DashBoard = () => {
           ) : (
             <>
               <li>
-                <NavLink to={"/dashboard/userHome"}>
-                  <FaHome></FaHome> User Home
+                <NavLink to={"/dashboard/profile"}>
+                  <FaHome></FaHome> My Profile
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/reservation"}>
-                  <FaCalendar></FaCalendar> Reservation
+                <NavLink to={"/dashboard/mealRequest"}>
+                  <FaCalendar></FaCalendar> Requested Meals
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/review"}>
+                  <FaAd></FaAd> My Review
                 </NavLink>
               </li>
               {/* <li>
-                <NavLink to={"/dashboard/cart"}>
-                  <FaShoppingCart></FaShoppingCart> My cart({cart.length})
-                </NavLink>
-              </li> */}
-              <li>
-                <NavLink to={"/dashboard/review"}>
-                  <FaAd></FaAd> Add A Review
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to={"/dashboard/paymentHistory"}>
                   <FaList></FaList>Payment History
                 </NavLink>
-              </li>
+              </li> */}
             </>
           )}
           <div className="divider"></div>
@@ -94,16 +89,16 @@ const DashBoard = () => {
               <FaHome></FaHome>Home
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/menu"}>
-              <FaSearch></FaSearch> Menu
+          {/* <li>
+            <NavLink to={"/meal"}>
+              <FaSearch></FaSearch> Meal
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/contact"}>
-              <FaEnvelope></FaEnvelope> Contact
+            <NavLink to={"/upcomingMeal"}>
+              <FaEnvelope></FaEnvelope> Upcoming meal
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="flex-1 p-8">

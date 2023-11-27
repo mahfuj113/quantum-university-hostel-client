@@ -92,6 +92,7 @@ const MealDetailsHome = () => {
       adminEmail,
       name: user?.displayName,
       email: user?.email,
+      status: "pending",
     };
     console.log(mealRequestInfo);
     if (!user) {
@@ -114,6 +115,15 @@ const MealDetailsHome = () => {
         .post("/mealRequest", mealRequestInfo)
         .then((res) => {
           console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `You request send`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         })
         .catch((error) => {
           console.error(error.message);
@@ -130,14 +140,11 @@ const MealDetailsHome = () => {
           <img className="max-w-lg max-h-56 w-full" src={image} alt="" />
           {/* </div> */}
           <div className="card shrink-0 w-full max-w-sm ">
-            {/* <form className="card-body"> */}
-            {/* <div className="form-control"> */}
             <h1>Title: {title}</h1>
             <p>Price: ${price}</p>
             <p>{adminName}</p>
             <p>Category: {category}</p>
             <p>Rating: {rating}</p>
-            {/* <p>Likes: {likes}</p> */}
             <p>Ingredients: {ingredients}</p>
             <p>Post Date: {postDate}</p>
             <p>Reviews: {reviews}</p>

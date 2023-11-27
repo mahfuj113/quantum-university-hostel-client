@@ -18,6 +18,7 @@ import Meals from "../pages/Meals/Meals/Meals";
 import MembershipDetails from "../pages/Home/Membership/MembershipDetails";
 import Payment from "../pages/Home/Payment/Payment";
 import MealDetailsHome from "../pages/Home/MealDetailsHome/MealDetailsHome";
+import RequestedMeals from "../pages/Dashboard/RequestedMeals/RequestedMeals";
 // import Root from "../layout/Root";
 
 const router = createBrowserRouter([
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashBoard />,
     children: [
+      //user routes
+      {
+        path: "mealRequest",
+        element: <RequestedMeals />,
+      },
       //admin routes
       {
         path: "adminProfile",
