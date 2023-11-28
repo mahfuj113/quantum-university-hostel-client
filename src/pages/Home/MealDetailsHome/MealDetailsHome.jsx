@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { SlLike } from "react-icons/sl";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import MealReviews from "./MealReviews";
 
 const MealDetailsHome = () => {
   const { user } = useAuth();
@@ -131,14 +132,11 @@ const MealDetailsHome = () => {
     }
   };
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <h1 className="text-center text-3xl font-bold mt-20">Meal Details</h1>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          {/* <div className="text-center lg:text-left"> */}
-          {/* <h1 className="text-5xl font-bold">Login now!</h1> */}
           <img className="max-w-lg max-h-56 w-full" src={image} alt="" />
-          {/* </div> */}
           <div className="card shrink-0 w-full max-w-sm ">
             <h1>Title: {title}</h1>
             <p>Price: ${price}</p>
@@ -157,11 +155,10 @@ const MealDetailsHome = () => {
                 Meal Request
               </button>
             </div>
-            {/* </div> */}
-            {/* </form> */}
           </div>
         </div>
       </div>
+      <MealReviews meal={meal} />
     </div>
   );
 };

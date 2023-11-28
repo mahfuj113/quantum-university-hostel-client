@@ -10,7 +10,7 @@ const MembershipDetails = () => {
   const { user } = useAuth();
   const {
     data: membership = [],
-    isPending: loading,
+    // isPending: loading,
     refetch,
   } = useQuery({
     queryKey: ["membership", user?.email],
