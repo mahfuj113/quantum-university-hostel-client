@@ -27,6 +27,9 @@ const UserProfile = () => {
       <div>
         <h3>{email}</h3>
         <h2>Badge: {usersBadge?.badge}</h2>
+        <h2>
+          {usersBadge?.getBadge ? `Package Buy: ${usersBadge.getBadge}` : ""}
+        </h2>
       </div>
     </div>
   );
