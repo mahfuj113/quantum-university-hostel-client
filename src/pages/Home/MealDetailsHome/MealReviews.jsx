@@ -32,8 +32,8 @@ const MealReviews = ({ id, mealRefetch }) => {
 
     const reviewInfo = {
       review,
-      name: user.displayName,
-      email: user.email,
+      name: user?.displayName,
+      email: user?.email,
       mealId: id,
     };
     console.log(reviewInfo);

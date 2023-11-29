@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-const CheckOutForm = () => {
+const CheckOutForm = ({ getBadge }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -92,29 +92,35 @@ const CheckOutForm = () => {
         setTransactionId(paymentIntent.id);
 
         // save payment info into the database
+        const membership = getBadge();
 
-        // const payment = {
-        //   email: user.email,
-        //   price: totalPrice,
-        //   transactionId: paymentIntent.id,
-        //   //   data: new Date(), // utc data convert, use moment js
-        //   cartIds: membership.map((item) => item._id),
-        //   menuItemIds: membership.map((item) => item.menuId),
-        //   status: "pending",
-        // };
-        // const res = await axiosSecure.post("/payments", payment);
-        // console.log("payment save", res.data);
+        axiosPublic
+          .patch(`/users/badge/${membership?.email}`, membership)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+        const payment = {
+          email: user.email,
+          price: membership.price,
+          transactionId: paymentIntent.id,
+          data: new Date(), // utc data convert, use moment js
+        };
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment save", res.data);
         // refetch();
-        // if (res?.data?.paymentResult?.insertedId) {
-        //   Swal.fire({
-        //     position: "top-end",
-        //     icon: "success",
-        //     title: "Thank yor for your payment",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        //   navigate("/dashboard/paymentHistory");
-        // }
+        if (res?.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${payment.price} successfuly paid`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // navigate("/dashboard/paymentHistory");
+        }
       }
     }
   };

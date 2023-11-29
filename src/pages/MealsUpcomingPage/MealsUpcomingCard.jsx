@@ -31,13 +31,6 @@ const MealsUpcomingCard = ({ item, handleRefetch }) => {
           console.log(res.data);
           if (res.data.modifiedCount > 0) {
             handleRefetch();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `You like this item`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
           }
         })
         .catch((error) => {

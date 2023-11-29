@@ -5,11 +5,11 @@ import CheckOutForm from "./CheckOutForm";
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 // console.log(import.meta.env.VITE_Payment_Gateway_PK);
 console.log(stripePromise);
-const Payment = () => {
+const Payment = ({ getBadge }) => {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <CheckOutForm></CheckOutForm>
+        <CheckOutForm getBadge={getBadge}></CheckOutForm>
       </Elements>
     </div>
   );

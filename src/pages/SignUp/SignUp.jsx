@@ -119,8 +119,8 @@ const SignUp = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
-                  pattern:
-                    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                  // pattern:
+                  // /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                 })}
                 name="password"
                 placeholder="password"

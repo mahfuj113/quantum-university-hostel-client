@@ -46,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout/:membership",
-        element: <MembershipDetails />,
+        element: (
+          <PrivateRoute>
+            <MembershipDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

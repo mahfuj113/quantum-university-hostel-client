@@ -13,23 +13,20 @@ const MealRequest = ({ handleMealRequest }) => {
   } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${user.email}`);
+      const res = await axiosPublic.get(`/users/${user?.email}`);
       return res.data;
     },
   });
   console.log(data);
   return (
     <>
-      {/* {data?.badge !== "bronze" ? (
+      {data?.getBadge ? (
         <button onClick={handleMealRequest} className="btn">
           Meal Request
         </button>
       ) : (
         ""
-      )} */}
-      <button onClick={handleMealRequest} className="btn">
-        Meal Request
-      </button>
+      )}
     </>
   );
 };

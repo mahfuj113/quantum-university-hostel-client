@@ -18,20 +18,18 @@ const MembershipDetails = () => {
   console.log(getPackageName);
 
   const membership = [
-    [
-      {
-        name: "silver",
-        price: 49.0,
-      },
-      {
-        name: "gold",
-        price: 80.0,
-      },
-      {
-        name: "platinum",
-        price: 109.0,
-      },
-    ],
+    {
+      name: "silver",
+      price: 49.0,
+    },
+    {
+      name: "gold",
+      price: 80.0,
+    },
+    {
+      name: "platinum",
+      price: 109.0,
+    },
   ];
 
   // const {
@@ -47,22 +45,24 @@ const MembershipDetails = () => {
   // });
   // console.log(membershipPackage);
 
-  const handleGetPackage = (getPackageName) => {
-    console.log(getPackageName);
-    const membershipInfo = {
-      getMemebership: getPackageName,
+  const handleGetPackage = () => {
+    // console.log(membershipInfo);
+    const getPackage = membership.find((item) => item.name === getPackageName);
+    console.log(getPackage);
+
+    return {
+      getMemebership: getPackage.name,
+      price: getPackage.price,
       name: user.displayName,
       email: user.email,
     };
-    console.log(membershipInfo);
-    // axiosPublic.post("/membership");
   };
   console.log(getName);
   return (
     <div>
       <div className=" mt-24 mb-8">
         <h2>Membership</h2>
-        <Payment />
+        <Payment getBadge={() => handleGetPackage()}></Payment>
         {/* <button
           onClick={() => handleGetPackage(getPackageName)}
           className="btn btn-success"
