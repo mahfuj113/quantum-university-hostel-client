@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="footer p-10 mt-14 bg-black">
       <div className="text-white">
-        <img src="https://i.ibb.co/w7DQZbc/images-2.png" alt="" />
-        <p className="text-2xl font-bold">Job Portal</p>
+        <img src="https://i.ibb.co/5hCP6t7/hostel.png" alt="" />
+        <p className="text-2xl font-bold">University Hostel</p>
       </div>
       <div className="text-white">
         <header className="footer-title opacity-100">Links</header>

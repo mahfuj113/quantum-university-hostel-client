@@ -19,12 +19,18 @@ import MembershipDetails from "../pages/Home/Membership/MembershipDetails";
 import Payment from "../pages/Home/Payment/Payment";
 import MealDetailsHome from "../pages/Home/MealDetailsHome/MealDetailsHome";
 import RequestedMeals from "../pages/Dashboard/RequestedMeals/RequestedMeals";
-// import Root from "../layout/Root";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
+import MealsUpcomingPage from "../pages/MealsUpcomingPage/MealsUpcomingPage";
+import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
+import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -33,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/meals",
         element: <Meals />,
+      },
+      {
+        path: "/upcomingMeals",
+        element: <MealsUpcomingPage />,
+      },
+      {
+        path: "checkout/:membership",
+        element: <MembershipDetails />,
       },
       {
         path: "/login",
@@ -50,12 +64,25 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoard />,
+    element: (
+      <PrivateRoute>
+        <DashBoard />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
     children: [
       //user routes
       {
+        path: "profile",
+        element: <UserProfile />,
+      },
+      {
         path: "mealRequest",
         element: <RequestedMeals />,
+      },
+      {
+        path: "reviews",
+        element: <MyReviews />,
       },
       //admin routes
       {
@@ -94,10 +121,7 @@ const router = createBrowserRouter([
         path: "upcomingMeals",
         element: <UpcomingMeals />,
       },
-      {
-        path: "checkout/:membership",
-        element: <MembershipDetails />,
-      },
+
       {
         path: "payment",
         element: <Payment />,

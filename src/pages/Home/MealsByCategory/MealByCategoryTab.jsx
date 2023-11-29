@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const MealByCategoryTab = ({ meal }) => {
   const { _id, title, image, rating, price } = meal;
-  console.log(meal);
+  // console.log(meal);
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
       <figure>

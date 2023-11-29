@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -15,6 +16,7 @@ const AddMeal = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const [upcomingMeals, setUpcomingMeals] = useState(false);
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
@@ -24,8 +26,10 @@ const AddMeal = () => {
       },
     });
 
+    let mealItem = {};
+
     if (res.data.success) {
-      const mealItem = {
+      mealItem = {
         title: data.title,
         price: parseFloat(data.price),
         category: data.category,
@@ -39,12 +43,30 @@ const AddMeal = () => {
         adminEmail: user?.email,
         image: res.data.data.display_url,
       };
+    }
+
+    if (upcomingMeals) {
+      console.log(mealItem);
+      const mealRes = await axiosSecure.post("/upcomingMeals", mealItem);
+      console.log(mealRes.data);
+      if (mealRes.data.insertedId) {
+        // show success pop up
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${data.title} added to the Upcoming meal`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } else {
       console.log(mealItem);
       const mealRes = await axiosSecure.post("/meal", mealItem);
       console.log(mealRes.data);
       if (mealRes.data.insertedId) {
         // show success pop up
-        reset();
+        // reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -54,7 +76,8 @@ const AddMeal = () => {
         });
       }
     }
-    console.log("with image url", res.data);
+
+    // console.log("with image url", res.data);
   };
 
   //   const upComingMeal = () => {
@@ -142,6 +165,8 @@ const AddMeal = () => {
             </label>
             <input
               defaultValue={0}
+              min={0}
+              max={5}
               {...register("rating")}
               type="number"
               placeholder="Rating"
@@ -221,10 +246,10 @@ const AddMeal = () => {
             className="file-input w-full max-w-xs"
           />
         </div>
-        <button className="btn">
+        <button onClick={() => setUpcomingMeals(false)} className="btn">
           Add Meal <FaUtensils></FaUtensils>
         </button>
-        <button className="btn">
+        <button className="btn" onClick={() => setUpcomingMeals(true)}>
           Upcoming Meal <FaUtensils></FaUtensils>
         </button>
       </form>

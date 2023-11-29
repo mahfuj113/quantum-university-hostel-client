@@ -2,11 +2,28 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-const MealReviews = () => {
+const MealReviews = ({ id, mealRefetch }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
+
+  console.log(id);
+  const {
+    data: reviews = [],
+    isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/meal/reviews/${id}`);
+      return res.data;
+    },
+  });
+  console.log(reviews);
 
   const handleReviews = (e) => {
     e.preventDefault();
@@ -17,6 +34,7 @@ const MealReviews = () => {
       review,
       name: user.displayName,
       email: user.email,
+      mealId: id,
     };
     console.log(reviewInfo);
 
@@ -40,6 +58,8 @@ const MealReviews = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {
+            refetch();
+            mealRefetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -52,6 +72,15 @@ const MealReviews = () => {
         .catch((error) => {
           console.error(error.message);
         });
+
+      // axiosSecure
+      //   .get(`/meal/reviews/${_id}`)
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error(error.message);
+      //   });
     }
   };
   return (
@@ -65,6 +94,11 @@ const MealReviews = () => {
           ></textarea>
           <input type="submit" className="btn" value="Review" />
         </form>
+      </div>
+      <div>
+        {reviews.map((item) => (
+          <p key={item._id}>{item.review}</p>
+        ))}
       </div>
     </div>
   );

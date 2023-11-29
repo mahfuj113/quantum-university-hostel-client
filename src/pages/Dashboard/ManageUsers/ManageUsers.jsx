@@ -5,6 +5,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -12,7 +13,7 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-
+  console.log(users);
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       console.log(res.data);

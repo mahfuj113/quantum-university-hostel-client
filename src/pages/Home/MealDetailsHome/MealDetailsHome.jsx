@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { SlLike } from "react-icons/sl";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MealReviews from "./MealReviews";
+import MealRequest from "./MealRequest";
 
 const MealDetailsHome = () => {
   const { user } = useAuth();
@@ -25,7 +26,7 @@ const MealDetailsHome = () => {
       return res.data;
     },
   });
-  //   console.log(meal);
+
   const {
     _id,
     title,
@@ -56,7 +57,7 @@ const MealDetailsHome = () => {
       return;
     } else {
       axiosPublic
-        .put(`/mealLikes/${id}`)
+        .put(`/mealLikes/${id}`, { email: user.email })
         .then((res) => {
           console.log(res.data);
           if (res.data.modifiedCount > 0) {
@@ -112,23 +113,23 @@ const MealDetailsHome = () => {
       });
     } else {
       console.log(meal);
-      axiosSecure
-        .post("/mealRequest", mealRequestInfo)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `You request send`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        })
-        .catch((error) => {
-          console.error(error.message);
-        });
+      // axiosSecure
+      //   .post("/mealRequest", mealRequestInfo)
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     if (res.data.insertedId) {
+      //       Swal.fire({
+      //         position: "top-end",
+      //         icon: "success",
+      //         title: `You request send`,
+      //         showConfirmButton: false,
+      //         timer: 1500,
+      //       });
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error(error.message);
+      //   });
     }
   };
   return (
@@ -151,14 +152,12 @@ const MealDetailsHome = () => {
               <button onClick={() => handleLikes(_id)} className="btn text-xl">
                 <SlLike /> {likes}
               </button>
-              <button onClick={handleMealRequest} className="btn">
-                Meal Request
-              </button>
+              <MealRequest handleMealRequest={handleMealRequest}></MealRequest>
             </div>
           </div>
         </div>
       </div>
-      <MealReviews meal={meal} />
+      <MealReviews id={id} mealRefetch={refetch}></MealReviews>
     </div>
   );
 };

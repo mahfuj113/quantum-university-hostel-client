@@ -49,20 +49,6 @@ const Navbar = () => {
           Upcoming Meals<MdNotificationsNone></MdNotificationsNone>
         </NavLink>
       </li>
-      {!user && (
-        <li>
-          <NavLink
-            to={"/about"}
-            className={({ isActive }) =>
-              isActive
-                ? "bg-red-400 hover:bg-red-400"
-                : "text-lg font-medium disabled"
-            }
-          >
-            Join US
-          </NavLink>
-        </li>
-      )}
     </>
   );
 
@@ -93,6 +79,10 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
+        <img
+          src="https://i.ibb.co/zf6z5fV/hostel-1-removebg-preview.png"
+          alt=""
+        />
         <p className="font-medium bg-gradient-to-r bg-clip-text text-transparent from-[#004EA2] via-[#7CEA03] to-yellow-500  w-full text-xl">
           Quantum University Hostel
         </p>
@@ -116,19 +106,16 @@ const Navbar = () => {
                 <p className="text-lg">{user.displayName}</p>
               </li>
               <li>
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "bg-red-400 hover:bg-red-400"
-                        : "text-lg font-medium disabled"
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-                {/* <button className="btn btn-sm btn-ghost">Dashboard</button> */}
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-red-400 hover:bg-red-400"
+                      : "text-lg font-medium disabled"
+                  }
+                >
+                  Dashboard
+                </NavLink>
               </li>
               <li>
                 <button className="btn btn-sm btn-ghost" onClick={logOut}>
@@ -139,8 +126,8 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/login">
-            <button onClick={handleLogOut} className="btn btn-sm btn-ghost">
-              Login
+            <button onClick={handleLogOut} className="btn btn-secondary">
+              Join Us
             </button>
           </Link>
         )}

@@ -2,20 +2,18 @@ import {
   FaAd,
   FaBook,
   FaCalendar,
-  FaEnvelope,
   FaHome,
   FaList,
-  FaSearch,
   FaUsers,
   FaUtensils,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-// import useAdmin from "../hooks/useAdmin";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
   ///TODO:  get isAdmin value from the database
-  // const [isAdmin] = useAdmin();
-  const isAdmin = false;
+  const [isAdmin] = useAdmin();
+  // const isAdmin = false;
 
   return (
     <div className="flex">
@@ -72,7 +70,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/review"}>
+                <NavLink to={"/dashboard/reviews"}>
                   <FaAd></FaAd> My Review
                 </NavLink>
               </li>
