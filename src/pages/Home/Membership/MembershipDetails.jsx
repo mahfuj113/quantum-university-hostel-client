@@ -49,28 +49,26 @@ const MembershipDetails = () => {
 
   const handleGetPackage = (getPackageName) => {
     console.log(getPackageName);
-    // const membershipsArray = membership[0];
-
-    // Find the membership with the specified name
-    const foundMembership = membership.map(
-      (member) => member.name === getPackageName
-    );
-    console.log(foundMembership);
-    // Return the found membership or null if not found
-    return foundMembership || null;
+    const membershipInfo = {
+      getMemebership: getPackageName,
+      name: user.displayName,
+      email: user.email,
+    };
+    console.log(membershipInfo);
+    // axiosPublic.post("/membership");
   };
-  console.log("get package", getName);
+  console.log(getName);
   return (
     <div>
       <div className=" mt-24 mb-8">
         <h2>Membership</h2>
-        {/* <Payment /> */}
-        <button
+        <Payment />
+        {/* <button
           onClick={() => handleGetPackage(getPackageName)}
           className="btn btn-success"
         >
           Pay
-        </button>
+        </button> */}
         {/* {membership.map((item) => item.name(<p>{item.name}</p>))} */}
       </div>
     </div>

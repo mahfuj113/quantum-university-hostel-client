@@ -50,7 +50,7 @@ const MyReviews = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosSecure.delete(`/meal/${item._id}`);
+        const res = await axiosSecure.delete(`/meal/reviews/${item}`);
         console.log(res.data);
         if (res.data.deletedCount > 0) {
           refetch();
@@ -78,6 +78,7 @@ const MyReviews = () => {
               <th>Reviews</th>
               <th>My Review</th>
               <th>Delete</th>
+              <th>Update</th>
               <th>Details</th>
             </tr>
           </thead>

@@ -34,7 +34,7 @@ const MealsByCategory = () => {
     axiosPublic
       .get("/meal")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setMealCategory(res.data);
       })
       .catch((error) => {

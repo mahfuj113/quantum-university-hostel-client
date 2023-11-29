@@ -7,12 +7,10 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Meals = () => {
-  const [meal = [], , refetch] = useMeal();
+  const [meal, , refetch] = useMeal();
   const axiosPublic = useAxiosPublic();
-  const [displayByMealTitle, setDisplayByMealTitle] = useState([]);
   const [query, setQuery] = useState("");
   const [filterCategory, setFilterCategory] = useState([]);
-  const [filterByPriceRange, setFilterByPriceRange] = useState([]);
   const [dataSource, setDataSource] = useState(meal || []);
   const [hasMore, setHasMore] = useState(true);
   const [category, setCategory] = useState("");
@@ -47,7 +45,6 @@ const Meals = () => {
       handleMealCategory(data);
     }
   };
-  // console.log(filterByPriceRange);
 
   const handleSearch = () => {
     if (query) {
@@ -75,6 +72,7 @@ const Meals = () => {
 
   useEffect(() => {
     handleSearch();
+    refetch();
   }, [query, category, price]);
   return (
     <div className="mt-24">

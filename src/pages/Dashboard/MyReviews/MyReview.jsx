@@ -1,9 +1,16 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+// import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-const MyReview = ({ review, meals, handleDeleteItem, index }) => {
-  const item = meals?.find((meal) => meal._id === review.mealId);
-  console.log(item);
+const MyReview = ({ review, meals = [], handleDeleteItem, index }) => {
+  // const axiosPublic = useAxiosPublic();
+
+  const item = meals?.find((meal) => meal?._id === review?.mealId);
+  // console.log(item);
+  // const handleDeleteReview = (id) => {
+  //   console.log(id);
+  //   axiosPublic.delete(`/meal/reviews/${id}`);
+  // };
   return (
     <tr>
       <td>{index + 1}</td>
@@ -14,7 +21,7 @@ const MyReview = ({ review, meals, handleDeleteItem, index }) => {
       <td>
         <button
           className="btn btn-ghost btn-lg"
-          onClick={() => handleDeleteItem(review)}
+          onClick={() => handleDeleteItem(review._id)}
         >
           <FaTrashAlt className="text-red-600"></FaTrashAlt>
         </button>

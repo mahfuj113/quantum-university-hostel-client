@@ -1,19 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import MealsUpcomingCard from "./MealsUpcomingCard";
+
 const MealsUpcomingPage = () => {
+  const axiosPublic = useAxiosPublic();
+  const {
+    data: upcomingMeals = [],
+    // isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/upcomingMeals`);
+      return res.data;
+    },
+  });
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl mt-24">
-      <figure>
-        <img
-          src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-          alt="Shoes"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div>
-      </div>
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 p-3">
+      {upcomingMeals.map((item) => (
+        <MealsUpcomingCard
+          key={item._id}
+          item={item}
+          handleRefetch={refetch}
+        ></MealsUpcomingCard>
+      ))}
     </div>
   );
 };

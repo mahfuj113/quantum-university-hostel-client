@@ -11,10 +11,10 @@ const Footer = () => {
       <div className="text-white">
         <header className="footer-title opacity-100">Links</header>
         <Link className="hover:underline" to="/meals">
-          All Jobs
+          Meals
         </Link>
         <Link className="hover:underline" to="/upcomingMeals">
-          Blogs
+          Upcoming Meals
         </Link>
       </div>
       <div className="text-white">

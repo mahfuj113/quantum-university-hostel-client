@@ -72,15 +72,6 @@ const MealReviews = ({ id, mealRefetch }) => {
         .catch((error) => {
           console.error(error.message);
         });
-
-      // axiosSecure
-      //   .get(`/meal/reviews/${_id}`)
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   })
-      //   .catch((error) => {
-      //     console.error(error.message);
-      //   });
     }
   };
   return (

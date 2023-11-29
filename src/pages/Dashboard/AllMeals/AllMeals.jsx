@@ -37,6 +37,7 @@ const AllMeals = () => {
   };
   return (
     <div>
+      <h1 className="text-center font-bold text-2xl">All Meals</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}

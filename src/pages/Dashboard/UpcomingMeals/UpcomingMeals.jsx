@@ -1,4 +1,79 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
 const UpcomingMeals = () => {
+  const axiosPublic = useAxiosPublic();
+  const {
+    data: upcomingMeals = [],
+    // isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/upcomingMeals`);
+      return res.data;
+    },
+  });
+  console.log(upcomingMeals);
+
+  const handlePublish = (user) => {
+    const {
+      _id,
+      adminEmail,
+      adminName,
+      category,
+      details,
+      image,
+      ingredients,
+      likes,
+      postDate,
+      price,
+      rating,
+      reviews,
+      title,
+    } = user;
+    const saveMeal = {
+      adminEmail,
+      adminName,
+      category,
+      details,
+      image,
+      ingredients,
+      likes,
+      postDate,
+      price,
+      rating,
+      reviews,
+      title,
+    };
+    axiosPublic
+      .delete(`/upcomingMeals/${_id}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+    axiosPublic
+      .post(`/meal`, saveMeal)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Meal has been added`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div>
       <div className="flex justify-evenly my-4">
@@ -12,42 +87,31 @@ const UpcomingMeals = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Subscription Status</th>
-                <th>Role</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Likes</th>
+                <th>Post By</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {/* {users.map((user, index) => (
-            <tr key={user._id}>
-              <th>{index + 1}</th>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.email}</td>
-              <td>
-                {user.role === "admin" ? (
-                  "Admin"
-                ) : (
-                  <button
-                    className="btn btn-sm bg-orange-500 hover:bg-orange-500"
-                    onClick={() => handleMakeAdmin(user)}
-                  >
-                    Make Admin
-                  </button>
-                )}
-              </td>
-              <td>
-                <button
-                  className="btn btn-ghost btn-lg"
-                  onClick={() => handleDeleteUser(user)}
-                >
-                  <FaTrashAlt className="text-red-600"></FaTrashAlt>
-                </button>
-              </td>
-            </tr>
-          ))} */}
+              {upcomingMeals.map((user, index) => (
+                <tr key={user._id}>
+                  <th>{index + 1}</th>
+                  <td>{user.title}</td>
+                  <td>{user.price}</td>
+                  <td>{user.likes}</td>
+                  <td>{user.adminEmail}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm bg-orange-500 hover:bg-orange-500"
+                      onClick={() => handlePublish(user)}
+                    >
+                      Publish
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

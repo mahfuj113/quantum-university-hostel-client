@@ -76,43 +76,11 @@ const AddMeal = () => {
         });
       }
     }
-
-    // console.log("with image url", res.data);
   };
 
-  //   const upComingMeal = () => {
-  //     console.log("object");
-  //     const onSubmited = async (data) => {
-  //       console.log("data");
-  //       const imageFile = { image: data.image[0] };
-  //       const res = await axiosPublic.post(image_hosting_api, imageFile, {
-  //         headers: {
-  //           "content-type": "multipart/form-data",
-  //         },
-  //       });
-
-  //       if (res.data.success) {
-  //         const mealItem = {
-  //           title: data.title,
-  //           price: parseFloat(data.price),
-  //           category: data.category,
-  //           rating: parseFloat(data.rating),
-  //           ingredients: data.ingredients,
-  //           postDate: data.postDate,
-  //           likes: parseFloat(data.likes),
-  //           reviews: data.reviews,
-  //           details: data.details,
-  //           adminName: user?.displayName,
-  //           adminEmail: user?.email,
-  //           image: res.data.data.display_url,
-  //         };
-  //         console.log(mealItem);
-  //       }
-  //       console.log("with image url", res.data);
-  //     };
-  //   };
   return (
     <div>
+      <h1 className="text-2xl font-bold text-center">Meal Add</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="lg:flex gap-6">
           <div className="form-control w-full my-6">

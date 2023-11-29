@@ -20,13 +20,16 @@ const MealRequest = ({ handleMealRequest }) => {
   console.log(data);
   return (
     <>
-      {data?.badge !== "bronze" ? (
+      {/* {data?.badge !== "bronze" ? (
         <button onClick={handleMealRequest} className="btn">
           Meal Request
         </button>
       ) : (
         ""
-      )}
+      )} */}
+      <button onClick={handleMealRequest} className="btn">
+        Meal Request
+      </button>
     </>
   );
 };
