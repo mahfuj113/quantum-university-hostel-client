@@ -119,7 +119,6 @@ const CheckOutForm = ({ getBadge }) => {
             showConfirmButton: false,
             timer: 1500,
           });
-          // navigate("/dashboard/paymentHistory");
         }
       }
     }
@@ -144,7 +143,7 @@ const CheckOutForm = ({ getBadge }) => {
         }}
       />
       <button
-        className="btn btn-sm btn-primary my-4"
+        className="btn bg-[#482668] hover:bg-[#482668] text-white"
         type="submit"
         disabled={!stripe}
         // disabled={!stripe || !clientSecret}

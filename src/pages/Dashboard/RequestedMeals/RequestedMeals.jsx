@@ -53,7 +53,7 @@ const RequestedMeals = () => {
           <table className="table table-zebra w-full">
             {/* head */}
             <thead>
-              <tr>
+              <tr className="text-lg bg-[#482668] text-white">
                 <th>#</th>
                 <th>Title</th>
                 <th>Likes</th>

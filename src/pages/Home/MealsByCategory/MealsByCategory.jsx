@@ -34,7 +34,6 @@ const MealsByCategory = () => {
     axiosPublic
       .get("/meal")
       .then((res) => {
-        // console.log(res.data);
         setMealCategory(res.data);
       })
       .catch((error) => {
@@ -43,7 +42,6 @@ const MealsByCategory = () => {
   };
 
   const handleMealByCategory = (category, tabIndex) => {
-    // console.log(category, tabIndex);
     setActiveTab(tabIndex);
     axiosPublic
       .get(`/mealCategory?category=${category}`)

@@ -1,15 +1,28 @@
 import { Link } from "react-router-dom";
-import useMeal from "../../../hooks/useMeal";
+// import useMeal from "../../../hooks/useMeal";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AllMeals = () => {
-  const [meal, , refetch] = useMeal();
-  const axiosSecure = useAxiosSecure();
+  // const [meal, , refetch] = useMeal();
+  const axiosPublic = useAxiosPublic();
 
+  const {
+    data: meal = [],
+    isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["meal"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/meal");
+      return res.data;
+    },
+  });
+
+  console.log(meal);
   const handleDeleteItem = (item) => {
-    console.log(item);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,7 +33,7 @@ const AllMeals = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosSecure.delete(`/meal/${item._id}`);
+        const res = await axiosPublic.delete(`/meal/${item._id}`);
         console.log(res.data);
         if (res.data.deletedCount > 0) {
           refetch();
@@ -42,7 +55,7 @@ const AllMeals = () => {
         <table className="table w-full">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-lg bg-[#482668] text-white">
               <th>#</th>
               <th>Title</th>
               <th>Likes</th>
@@ -56,7 +69,7 @@ const AllMeals = () => {
           </thead>
           <tbody>
             {meal?.map((item, index) => (
-              <tr key={item._id}>
+              <tr key={item?._id}>
                 <td>{index + 1}</td>
                 <td>{item.title}</td>
                 <td>{item.likes}</td>
@@ -65,7 +78,7 @@ const AllMeals = () => {
                 <td>{item.adminEmail}</td>
                 <td>
                   {/* <Link to={`/dashboard/updateItem`}> */}
-                  <Link to={`/dashboard/updateItem/${item._id}`}>
+                  <Link to={`/dashboard/updateItem/${item?._id}`}>
                     <button className="btn btn-lg bg-orange-500">
                       <FaEdit className="text-white"></FaEdit>
                     </button>

@@ -33,7 +33,7 @@ const Banner = () => {
             <img className="w-full h-[700px]" src={banner1} alt="" />
             <div className="absolute top-[50%] translate-x-[50%] text-white">
               <h1 className="mb-10 text-5xl font-bold">
-                Your Dream Job Awaits
+                Where Comfort Meets Community
               </h1>
               <p className="pb-4">
                 Find the perfect job that matches your skills and
@@ -58,7 +58,7 @@ const Banner = () => {
             <img className="w-full h-[700px]" src={banner2} alt="" />
             <div className="absolute top-[50%] translate-x-[50%] text-white">
               <h1 className="mb-10 text-5xl font-bold">
-                Your Dream Job Awaits
+                Where Comfort Meets Community
               </h1>
               <p className="pb-4">
                 Find the perfect job that matches your skills and
@@ -83,7 +83,7 @@ const Banner = () => {
             <img className="w-full h-[700px]" src={banner3} alt="" />
             <div className="absolute top-[50%] translate-x-[50%] text-white">
               <h1 className="mb-10 text-5xl font-bold">
-                Your Dream Job Awaits
+                Where Comfort Meets Community
               </h1>
               <p className="pb-4">
                 Find the perfect job that matches your skills and
@@ -108,7 +108,7 @@ const Banner = () => {
             <img className="w-full h-[700px]" src={banner4} alt="" />
             <div className="absolute top-[50%] translate-x-[50%] text-white">
               <h1 className="mb-10 text-5xl font-bold">
-                Your Dream Job Awaits
+                Where Comfort Meets Community
               </h1>
               <p className="pb-4">
                 Find the perfect job that matches your skills and

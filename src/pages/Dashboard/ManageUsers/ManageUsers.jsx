@@ -65,7 +65,7 @@ const ManageUsers = () => {
           <table className="table table-zebra w-full">
             {/* head */}
             <thead>
-              <tr>
+              <tr className="text-lg bg-[#482668] text-white">
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -80,7 +80,7 @@ const ManageUsers = () => {
                   <th>{index + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user.email}</td>
+                  <td>{user?.getBadge ? user?.getBadge : user?.badge}</td>
                   <td>
                     {user.role === "admin" ? (
                       "Admin"

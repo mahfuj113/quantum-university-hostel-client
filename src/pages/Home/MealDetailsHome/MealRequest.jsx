@@ -21,7 +21,10 @@ const MealRequest = ({ handleMealRequest }) => {
   return (
     <>
       {data?.getBadge ? (
-        <button onClick={handleMealRequest} className="btn">
+        <button
+          onClick={handleMealRequest}
+          className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+        >
           Meal Request
         </button>
       ) : (

@@ -78,14 +78,13 @@ const UpcomingMeals = () => {
     <div>
       <div className="flex justify-evenly my-4">
         <h2 className="text-3xl">Upcoming Meals</h2>
-        {/* <h2 className="text-3xl">Total Users {users.length}</h2> */}
       </div>
       <div>
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full">
             {/* head */}
             <thead>
-              <tr>
+              <tr className="text-lg bg-[#482668] text-white">
                 <th>#</th>
                 <th>Title</th>
                 <th>Price</th>

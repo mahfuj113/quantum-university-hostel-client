@@ -7,6 +7,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { GiMeal } from "react-icons/gi";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -42,35 +43,32 @@ const AddMeal = () => {
         adminName: user?.displayName,
         adminEmail: user?.email,
         image: res.data.data.display_url,
+        likedByUser: [],
       };
     }
 
     if (upcomingMeals) {
-      console.log(mealItem);
       const mealRes = await axiosSecure.post("/upcomingMeals", mealItem);
-      console.log(mealRes.data);
       if (mealRes.data.insertedId) {
         // show success pop up
         reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${data.title} added to the Upcoming meal`,
+          title: `${data?.title} added to the Upcoming meal`,
           showConfirmButton: false,
           timer: 1500,
         });
       }
     } else {
-      console.log(mealItem);
       const mealRes = await axiosSecure.post("/meal", mealItem);
-      console.log(mealRes.data);
       if (mealRes.data.insertedId) {
         // show success pop up
-        // reset();
+        reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${data.title} added to the meal`,
+          title: `${data?.title} added to the meal`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -214,10 +212,16 @@ const AddMeal = () => {
             className="file-input w-full max-w-xs"
           />
         </div>
-        <button onClick={() => setUpcomingMeals(false)} className="btn">
-          Add Meal <FaUtensils></FaUtensils>
+        <button
+          onClick={() => setUpcomingMeals(false)}
+          className="btn bg-[#482668] hover:bg-[#482668] text-white mr-3"
+        >
+          Add Meal <GiMeal className="text-xl" />
         </button>
-        <button className="btn" onClick={() => setUpcomingMeals(true)}>
+        <button
+          className="btn bg-[#482668] hover:bg-[#482668] text-white"
+          onClick={() => setUpcomingMeals(true)}
+        >
           Upcoming Meal <FaUtensils></FaUtensils>
         </button>
       </form>

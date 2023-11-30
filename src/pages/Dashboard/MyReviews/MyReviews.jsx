@@ -13,7 +13,7 @@ const MyReviews = () => {
   const {
     data: meal = [],
     isPending: loading,
-    refetch,
+    // refetch,
   } = useQuery({
     queryKey: ["meal"],
     queryFn: async () => {
@@ -27,7 +27,7 @@ const MyReviews = () => {
   const {
     data: reviews = [],
     // isPending: loading,
-    // refetch,
+    refetch,
   } = useQuery({
     queryKey: ["reviews", user?.email],
     queryFn: async () => {
@@ -67,18 +67,19 @@ const MyReviews = () => {
   };
   return (
     <div>
+      <h1 className="text-2xl text-center font-bold">My Reviews</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-lg bg-[#482668] text-white">
               <th>#</th>
               <th>Title</th>
               <th>Likes</th>
               <th>Reviews</th>
               <th>My Review</th>
               <th>Delete</th>
-              <th>Update</th>
+              {/* <th>Update</th> */}
               <th>Details</th>
             </tr>
           </thead>

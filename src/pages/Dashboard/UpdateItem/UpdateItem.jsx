@@ -7,11 +7,11 @@ import { FaUtensils } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -30,7 +30,6 @@ const UpdateItem = () => {
       return res.data;
     },
   });
-  console.log(meal);
   const {
     title,
     price,
@@ -46,44 +45,46 @@ const UpdateItem = () => {
   //   console.log(title, category);
 
   const onSubmit = async (data) => {
-    const imageFile = { image: data.image[0] };
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    // const imageFile = { image: data.image[0] };
+    // const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // });
 
-    if (res.data.success) {
-      const mealItem = {
-        title: data.title,
-        price: parseFloat(data.price),
-        category: data.category,
-        rating: parseFloat(data.rating),
-        ingredients: data.ingredients,
-        postDate: data.postDate,
-        likes: parseFloat(data.likes),
-        reviews: data.reviews,
-        details: data.details,
-        adminName: user?.displayName,
-        adminEmail: user?.email,
-        image: res.data.data.display_url,
-      };
-      console.log(mealItem);
-      const mealRes = await axiosSecure.patch(`/meal/${id}`, mealItem);
-      console.log(mealRes.data);
-      if (mealRes.data.modifiedCount > 0) {
-        // show success pop up
-        reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${data.title} update to the meal`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+    //   if (res.data.success) {
+
+    // };
+
+    const mealItem = {
+      title: data?.title,
+      price: parseFloat(data?.price),
+      category: data?.category,
+      rating: parseFloat(data?.rating),
+      ingredients: data?.ingredients,
+      postDate: data?.postDate,
+      likes: parseFloat(data?.likes),
+      reviews: parseFloat(data?.reviews),
+      details: data?.details,
+      adminName: user?.displayName,
+      adminEmail: user?.email,
+      image: data.image,
+      likedByUser: [],
+    };
+    console.log("meal item", mealItem);
+    const mealRes = await axiosSecure.patch(`/meal/${id}`, mealItem);
+    console.log("res", mealRes?.data);
+    if (mealRes?.data?.modifiedCount > 0) {
+      // show success pop up
+      // reset();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${data.title} update to the meal`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
-    console.log("with image url", res.data);
   };
   return (
     <div>
@@ -221,11 +222,11 @@ const UpdateItem = () => {
           <input
             defaultValue={image}
             {...register("image", { required: true })}
-            type="file"
-            className="file-input w-full max-w-xs"
+            type="text"
+            className="input input-bordered w-full"
           />
         </div>
-        <button className="btn">
+        <button className="btn bg-[#482668] hover:bg-[#482668] text-white">
           Update Meal <FaUtensils></FaUtensils>
         </button>
       </form>

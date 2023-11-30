@@ -46,9 +46,12 @@ const MealsUpcomingCard = ({ item, handleRefetch }) => {
       <div className="card-body">
         <h2 className="card-title">{item.title}</h2>
         <p>Price: ${item.price}</p>
-        <div className="card-actions justify-end">
-          <button onClick={handleLikes} className="btn btn-primary">
-            <SlLike></SlLike>
+        <div className="card-actions justify-center">
+          <button
+            onClick={handleLikes}
+            className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+          >
+            <SlLike className="text-lg"></SlLike>
             {item.likes}
           </button>
         </div>

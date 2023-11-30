@@ -7,6 +7,8 @@ import { SlLike } from "react-icons/sl";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MealReviews from "./MealReviews";
 import MealRequest from "./MealRequest";
+import { FiDollarSign } from "react-icons/fi";
+import { FaDollarSign } from "react-icons/fa";
 
 const MealDetailsHome = () => {
   const { user } = useAuth();
@@ -41,6 +43,7 @@ const MealDetailsHome = () => {
     image,
     adminName,
     adminEmail,
+    likedByUser,
   } = meal;
 
   const handleLikes = (id) => {
@@ -91,6 +94,7 @@ const MealDetailsHome = () => {
       details,
       image,
       adminName,
+      likedByUser: [],
       adminEmail,
       name: user?.displayName,
       email: user?.email,
@@ -139,8 +143,11 @@ const MealDetailsHome = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img className="max-w-lg max-h-56 w-full" src={image} alt="" />
           <div className="card shrink-0 w-full max-w-sm ">
-            <h1>Title: {title}</h1>
-            <p>Price: ${price}</p>
+            <h1 className="text-2xl">Title: {title}</h1>
+            <p className="flex items-center">
+              Price: <FaDollarSign />
+              {price}
+            </p>
             <p>{adminName}</p>
             <p>Category: {category}</p>
             <p>Rating: {rating}</p>
@@ -149,8 +156,11 @@ const MealDetailsHome = () => {
             <p>Reviews: {reviews}</p>
             <p>Details: {details}</p>
             <div className="flex gap-2">
-              <button onClick={() => handleLikes(_id)} className="btn text-xl">
-                <SlLike /> {likes}
+              <button
+                onClick={() => handleLikes(_id)}
+                className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+              >
+                <SlLike className="text-xl" /> {likes}
               </button>
               <MealRequest handleMealRequest={handleMealRequest}></MealRequest>
             </div>

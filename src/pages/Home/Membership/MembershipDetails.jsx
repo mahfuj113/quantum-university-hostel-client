@@ -61,15 +61,8 @@ const MembershipDetails = () => {
   return (
     <div>
       <div className=" mt-24 mb-8">
-        <h2>Membership</h2>
+        <h2 className="text-3xl font-bold my-3">Card Info</h2>
         <Payment getBadge={() => handleGetPackage()}></Payment>
-        {/* <button
-          onClick={() => handleGetPackage(getPackageName)}
-          className="btn btn-success"
-        >
-          Pay
-        </button> */}
-        {/* {membership.map((item) => item.name(<p>{item.name}</p>))} */}
       </div>
     </div>
   );

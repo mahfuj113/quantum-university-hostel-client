@@ -22,10 +22,13 @@ const SocialLogin = () => {
     });
   };
   return (
-    <div className="p-8">
+    <div className="pt-2 pb-4">
       <div className="divider"></div>
-      <div>
-        <button onClick={handleGoogleSignIn} className="btn">
+      <div className="text-center">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+        >
           <FaGoogle className="mr-2"></FaGoogle>
           Google
         </button>

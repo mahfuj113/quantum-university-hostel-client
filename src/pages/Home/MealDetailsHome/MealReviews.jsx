@@ -77,17 +77,21 @@ const MealReviews = ({ id, mealRefetch }) => {
   return (
     <div>
       <div>
-        <form onSubmit={handleReviews}>
+        <form onSubmit={handleReviews} className="flex">
           <textarea
             placeholder="Type here for review"
-            className="textarea textarea-bordered textarea-sm w-full max-w-xs"
+            className="textarea textarea-bordered textarea-sm w-full max-w-xs border-2"
             name="review"
           ></textarea>
-          <input type="submit" className="btn" value="Review" />
+          <input
+            type="submit"
+            className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+            value="Review"
+          />
         </form>
       </div>
       <div>
-        {reviews.map((item) => (
+        {reviews?.map((item) => (
           <p key={item._id}>{item.review}</p>
         ))}
       </div>

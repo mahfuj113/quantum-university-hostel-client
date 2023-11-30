@@ -45,16 +45,11 @@ const Login = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200">
+      {/* <div className="hero min-h-screen bg-base-200"> */}
       <div className="hero-content flex-col md:flex-row">
-        <div className="text-center md:w-1/2 lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 shadow-2xl bg-[#FFE4E1]">
+          <h1 className="text-3xl font-bold text-center mt-4">Please SignIn</h1>
+          {/* <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"> */}
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -85,30 +80,20 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            {/* <div className="form-control">
-              <label className="label">
-                <LoadCanvasTemplate />
-              </label>
-              <input
-                type="text"
-                onBlur={handleValidateCaptcha}
-                name="captcha"
-                placeholder="Type the captcha above"
-                className="input input-bordered"
-                required
-              />
-            </div> */}
             <div className="form-control mt-6">
               <input
                 // disabled={disabled}
-                className="btn btn-primary"
+                className="btn bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
                 type="submit"
                 value="Login"
               />
             </div>
           </form>
           <p className="px-6">
-            New Here? <Link to={"/signUp"}>Create an account</Link>
+            New Here?{" "}
+            <Link to={"/signUp"} className="text-sky-500">
+              Create an account
+            </Link>
           </p>
           <SocialLogin />
         </div>

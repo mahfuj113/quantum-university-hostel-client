@@ -98,7 +98,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-left">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user.photoURL} alt={user.displayName} />
+                <img src={user?.photoURL} alt={user?.displayName} />
               </div>
             </label>
             <ul
@@ -121,7 +121,10 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <button className="btn btn-sm btn-ghost" onClick={logOut}>
+                <button
+                  className="btn btn-sm btn-ghost bg-[#482668] hover:bg-[#482668] text-white rounded-3xl"
+                  onClick={logOut}
+                >
                   Logout
                 </button>
               </li>
@@ -129,7 +132,10 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/login">
-            <button onClick={handleLogOut} className="btn btn-secondary">
+            <button
+              onClick={handleLogOut}
+              className="btn btn-secondary rounded-3xl "
+            >
               Join Us
             </button>
           </Link>
