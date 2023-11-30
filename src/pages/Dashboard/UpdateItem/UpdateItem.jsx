@@ -72,7 +72,7 @@ const UpdateItem = () => {
       likedByUser: [],
     };
     console.log("meal item", mealItem);
-    const mealRes = await axiosSecure.patch(`/meal/${id}`, mealItem);
+    const mealRes = await axiosSecure.put(`/meal/${id}`, mealItem);
     console.log("res", mealRes?.data);
     if (mealRes?.data?.modifiedCount > 0) {
       // show success pop up
@@ -97,7 +97,7 @@ const UpdateItem = () => {
             </label>
             <input
               defaultValue={title}
-              {...register("title")}
+              {...register("title", { required: true })}
               type="text"
               placeholder="Meal title"
               className="input input-bordered w-full"
@@ -186,7 +186,7 @@ const UpdateItem = () => {
             </label>
             <input
               defaultValue={likes}
-              {...register("likes")}
+              {...register("likes", { required: true })}
               type="number"
               placeholder="likes"
               className="input input-bordered w-full"
@@ -199,8 +199,8 @@ const UpdateItem = () => {
             </label>
             <input
               defaultValue={reviews}
-              {...register("reviews")}
-              type="text"
+              {...register("reviews", { required: true })}
+              type="number"
               placeholder="reviews"
               className="input input-bordered w-full"
             />
@@ -221,7 +221,7 @@ const UpdateItem = () => {
         <div className="form-control w-full my-6">
           <input
             defaultValue={image}
-            {...register("image", { required: true })}
+            {...register("image")}
             type="text"
             className="input input-bordered w-full"
           />

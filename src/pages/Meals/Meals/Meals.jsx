@@ -177,7 +177,7 @@ const Meals = () => {
                       <td>{item.adminName}</td>
                       <td>{item.adminEmail}</td>
                       <td>
-                        <Link to={`/dashboard/mealDetails/${item._id}`}>
+                        <Link to={`/meal/${item._id}`}>
                           <button className="btn btn-md bg-orange-500">
                             Details
                           </button>
@@ -221,8 +221,8 @@ const Meals = () => {
                             <td>{item.adminName}</td>
                             <td>{item.adminEmail}</td>
                             <td>
-                              <Link to={`/dashboard/mealDetails/${item._id}`}>
-                                <button className="btn btn-md bg-orange-500">
+                              <Link to={`/meal/${item._id}`}>
+                                <button className="btn btn-md bg-orange-500 hover:bg-orange-500">
                                   Details
                                 </button>
                               </Link>

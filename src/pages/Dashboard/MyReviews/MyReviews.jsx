@@ -84,15 +84,16 @@ const MyReviews = () => {
             </tr>
           </thead>
           <tbody>
-            {reviews?.map((item, index) => (
-              <MyReview
-                key={item._id}
-                meals={meal}
-                review={item}
-                index={index}
-                handleDeleteItem={handleDeleteItem}
-              ></MyReview>
-            ))}
+            {reviews.length &&
+              reviews?.map((item, index) => (
+                <MyReview
+                  key={item._id}
+                  meals={meal}
+                  review={item}
+                  index={index}
+                  handleDeleteItem={handleDeleteItem}
+                ></MyReview>
+              ))}
           </tbody>
         </table>
       </div>

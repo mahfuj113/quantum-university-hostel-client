@@ -105,6 +105,9 @@ const DashBoard = () => {
           </ul>
         </div>
         <div className="flex-1 p-8">
+          <h2 className="text-3xl text-center font-bold">
+            Your dashboard is here
+          </h2>
           <Outlet></Outlet>
         </div>
       </div>

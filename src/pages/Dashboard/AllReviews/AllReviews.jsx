@@ -52,29 +52,30 @@ const AllReviews = () => {
             </tr>
           </thead>
           <tbody>
-            {meal?.map((item, index) => (
-              <tr key={item._id}>
-                <td>{index + 1}</td>
-                <td>{item.title}</td>
-                <td>{item.likes}</td>
-                <td>{item.reviews}</td>
-                <td>
-                  <button
-                    className="btn btn-ghost btn-lg"
-                    onClick={() => handleDeleteItem(item)}
-                  >
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
-                  </button>
-                </td>
-                <td>
-                  <Link to={`/dashboard/mealDetails/${item._id}`}>
-                    <button className="btn btn-md bg-orange-500">
-                      Details
+            {meal.length &&
+              meal?.map((item, index) => (
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  <td>{item.title}</td>
+                  <td>{item.likes}</td>
+                  <td>{item.reviews}</td>
+                  <td>
+                    <button
+                      className="btn btn-ghost btn-lg"
+                      onClick={() => handleDeleteItem(item)}
+                    >
+                      <FaTrashAlt className="text-red-600"></FaTrashAlt>
                     </button>
-                  </Link>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td>
+                    <Link to={`/dashboard/mealDetails/${item._id}`}>
+                      <button className="btn btn-md bg-orange-500 hover:bg-orange-500">
+                        Details
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

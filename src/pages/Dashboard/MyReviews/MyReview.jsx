@@ -23,7 +23,9 @@ const MyReview = ({ review, meals = [], handleDeleteItem, index }) => {
       </td>
       <td>
         <Link to={`/dashboard/mealDetails/${item?._id}`}>
-          <button className="btn btn-md bg-orange-500">Details</button>
+          <button className="btn btn-md bg-orange-500 hover:bg-orange-500">
+            Details
+          </button>
         </Link>
       </td>
     </tr>
