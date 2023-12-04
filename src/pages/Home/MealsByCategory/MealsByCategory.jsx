@@ -61,7 +61,7 @@ const MealsByCategory = () => {
       <Tabs>
         {/* <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}> */}
         <TabList>
-          <Tab onClick={handleAllMeals}>All Job</Tab>
+          <Tab onClick={handleAllMeals}>All Meal</Tab>
           <Tab onClick={() => handleMealByCategory("breakfast")}>Breakast</Tab>
           <Tab onClick={() => handleMealByCategory("lunch")}>Lunch</Tab>
           <Tab onClick={() => handleMealByCategory("dinner")}>Dinner</Tab>
